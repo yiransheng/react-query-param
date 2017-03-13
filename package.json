@@ -1,0 +1,29 @@
+{
+  "name": "react-query-param",
+  "version": "0.0.0",
+  "description": "like react-router@v4 but for query params",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yiransheng/react-query-param.git"
+  },
+  "keywords": [
+    "react",
+    "url",
+    "query-param",
+    "query-params"
+  ],
+  "author": "Yiran Sheng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yiransheng/react-query-param/issues"
+  },
+  "homepage": "https://github.com/yiransheng/react-query-param#readme",
+  "peerDependencies": {
+    "react": "^15.4.2",
+    "recompose": "^0.22.0"
+  }
+}
