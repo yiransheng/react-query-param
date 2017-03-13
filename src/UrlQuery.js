@@ -71,7 +71,6 @@ const nodesApi = (storage = getInitialNodes()) => callback => {
     runChange();
   }
   function replace(key, data) {
-    console.log(data);
     storage[key] = { ...storage[key], data };
     runChange();
   }
