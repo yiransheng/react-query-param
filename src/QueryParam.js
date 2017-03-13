@@ -11,15 +11,15 @@ const makeNode = (parentKey, data) => {
   };
 };
 
-@getContext({
+const QueryParam = getContext({
   "@@query/nodes": React.PropTypes.shape({
     push: React.PropTypes.func.isRequired,
     replace: React.PropTypes.func.isRequired,
     remove: React.PropTypes.func.isRequired
   }),
   "@@query/currentKey": React.PropTypes.symbol
-})
-export default class QueryParam extends Component {
+})(
+class extends Component {
   static childContextTypes = {
     "@@query/currentKey": React.PropTypes.symbol
   };
@@ -71,4 +71,6 @@ export default class QueryParam extends Component {
     }
     return <div>{this.props.children}</div>;
   }
-}
+});
+
+export default QueryParam;
