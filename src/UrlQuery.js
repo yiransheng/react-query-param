@@ -16,8 +16,11 @@ function getInitialNodes() {
 //   where NodeData :: Shape({ childNodes : [Symbol], parent: Symbol, data: Object })
 function gather(storage) {
   const pairs = gatherNode(storage[ROOT_QUERY_SYMBOL], storage);
-  return paris.reduce(
-    ({ key, values }, object) => {
+  return pairs.reduce(
+    (object, { key, values }) => {
+      if (!key || !values.length) {
+        return object;
+      }
       if (object[key]) {
         object[key] = [...object[key], ...values];
       } else {
@@ -68,6 +71,7 @@ const nodesApi = (storage = getInitialNodes()) => callback => {
     runChange();
   }
   function replace(key, data) {
+    console.log(data);
     storage[key] = { ...storage[key], data };
     runChange();
   }
@@ -111,7 +115,7 @@ export default class UrlQuery extends Component {
     };
   }
 
-  componentWillRecieveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.onChange !== nextProps.onChange) {
       this._nodesApi = this.getNodesApi(nextProps.onChange);
     }

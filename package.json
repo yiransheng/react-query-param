@@ -38,6 +38,8 @@
     "babel-preset-react": "^6.0.15",
     "babel-preset-stage-0": "^6.0.15",
     "babel-register": "6.7.2",
+    "react": "^15.4.2",
+    "recompose": "^0.22.0",
     "redux": "3.0.5",
     "rimraf": "2.4.4",
     "tape": "4.5.1"

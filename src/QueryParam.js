@@ -45,15 +45,15 @@ class extends Component {
       })
     );
   }
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const { values: vals1, ...props1 } = this.props;
-    const { values: vals2, ...props2 } = nextProps;
+    const { values: vals2, ...props2 } = prevProps;
     if (shallowEqual(props1, props2) && shallowEqual(vals1, vals2)) {
       return;
     }
-    const nodes = nextProps["@@query/nodes"];
+    const nodes = this.props["@@query/nodes"];
     nodes.replace(this._key, {
-      key: nextProps.name,
+      key: this.props.name,
       values: normalizeQueryValues(this.props.values)
     });
   }
