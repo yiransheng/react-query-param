@@ -33,10 +33,13 @@ export function normalizeQueryValues(values) {
   if (values == null) {
     return [];
   }
-  if (typeof values === "string") {
+  if (typeof values === "string" && values) {
     return [values];
   }
-  if (typeof values === "number" || typeof values === "boolean") {
+  if (typeof values === "number" && !isNaN(values)) {
+    return [values.toString()];
+  }
+  if (typeof values === "boolean") {
     return [values.toString()];
   }
   if (Array.isArray(values)) {

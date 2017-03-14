@@ -29,7 +29,7 @@ const enhancer = compose(
 
 const updateQuery = location => query => {
   let search = "";
-  if (query && !isEmpty(query) && query.q[0]) {
+  if (query && !isEmpty(query) && query.q) {
     search = stringify(query);
   }
   const newLocation = {

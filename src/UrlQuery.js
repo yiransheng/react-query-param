@@ -26,6 +26,9 @@ function gather(storage) {
       } else {
         object[key] = values;
       }
+      if (object[key].length === 1) {
+        object[key] = object[key][0];
+      }
       return object;
     },
     {}
