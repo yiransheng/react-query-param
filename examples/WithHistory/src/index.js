@@ -13,7 +13,7 @@ import { UrlQuery } from "react-url-param";
 const locationToAction = location => {
   const { search } = location;
   if (!search) {
-    return;
+    return { type: "Nothing" };
   }
   const query = parse(search) || {};
   switch (query.view) {
