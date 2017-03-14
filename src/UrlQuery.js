@@ -55,7 +55,9 @@ function gatherChildren(childNodes, storage) {
 // end gather
 
 const nodesApi = (storage = getInitialNodes()) => callback => {
-  const runChange = oncePerTick(() => callback(gather(storage)));
+  const runChange = oncePerTick(() => {
+    callback(gather(storage));
+  });
 
   function push(key, { parent, data }) {
     if (storage[key]) {
@@ -75,11 +77,18 @@ const nodesApi = (storage = getInitialNodes()) => callback => {
     runChange();
   }
   function remove(key) {
-    const peers = storage[storage[key].parent].childNodes;
-    const index = peers.indexOf(key);
-    if (index > -1) {
-      peers.splice(index, 1);
+    if (!storage[key]) {
+      return;
     }
+    const parent = storage[storage[key].parent];
+    if (parent) {
+      const peers = parent.childNodes;
+      const index = peers.indexOf(key);
+      if (index > -1) {
+        peers.splice(index, 1);
+      }
+    }
+    storage[key].childNodes.forEach(remove);
     delete storage[key];
     runChange();
   }

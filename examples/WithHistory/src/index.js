@@ -10,10 +10,7 @@ import { stringify, parse } from "query-string";
 
 import { UrlQuery } from "react-url-param";
 
-const store = createStore(reducer, initialState);
-const history = createHistory();
-
-history.listen(location => {
+const locationToAction = location => {
   const { search } = location;
   if (!search) {
     return;
@@ -21,22 +18,32 @@ history.listen(location => {
   const query = parse(search) || {};
   switch (query.view) {
     case "home":
-      store.dispatch(navigate({ route: "home" }));
+      return navigate({ route: "home" });
       break;
     case "about":
-      store.dispatch(navigate({ route: "about" }));
+      return navigate({ route: "about" });
       break;
     case "topic":
-      const id = query.id;
-      if (id) {
-        store.dispatch(navigate({ route: "topic", id }));
-      } else {
-        store.dispatch(navigate({ route: "topics" }));
-      }
+      return navigate({ route: "topics" });
+      break;
+    case "topic-detail":
+      const id = query.topic;
+      return navigate({ route: "topic", id });
       break;
     default:
-      store.dispatch(navigate({ route: null }));
+      return navigate({ route: null });
   }
+};
+
+const history = createHistory();
+const initialStateWithView = reducer(
+  initialState,
+  locationToAction(history.location)
+);
+const store = createStore(reducer, initialStateWithView);
+
+history.listen(location => {
+  store.dispatch(locationToAction(location));
 });
 
 const queryChanged = query => {

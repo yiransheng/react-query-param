@@ -48,6 +48,7 @@ const App = connect(
               ),
               topic: id => (
                 <QueryParam key="view" name="view" values="topic">
+                  <QueryParam key="view" name="view" values="topic-detail" />
                   <QueryParam key="topic" name="topic" values={id} />
                 </QueryParam>
               )
