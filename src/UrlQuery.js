@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { flatMap, oncePerTick } from "./utils";
+import { flatMap, oncePerTick, renderChildren } from "./utils";
 
 const ROOT_QUERY_SYMBOL = Symbol("root-query");
 
@@ -41,10 +41,10 @@ function gatherNode(node, storage) {
     return gatherChildren(childNodes.map(k => storage[k]), storage);
   }
   const { key: selfKey, values } = data;
-  const pairs = gatherChildren(childNodes.map(k => storage[k]), storage).filter(
-    ({ key }) => key !== selfKey
-  );
-  pairs.push({ key: selfKey, values });
+  const pairs = gatherChildren(childNodes.map(k => storage[k]), storage);
+  if (selfKey && values.length && pairs.every(({ key }) => key !== selfKey)) {
+    pairs.push({ key: selfKey, values });
+  }
   return pairs;
 }
 
@@ -121,12 +121,6 @@ export default class UrlQuery extends Component {
   }
 
   render() {
-    if (!this.props.children) {
-      return null;
-    }
-    if (React.Children.count(this.props.children) <= 1) {
-      return this.props.children;
-    }
-    return <div>{this.props.children}</div>;
+    return renderChildren(this.props.children);
   }
 }

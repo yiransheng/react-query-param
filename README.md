@@ -196,5 +196,10 @@ const initialState =
       locationToActions(history.location).reduce(rootReducer, preloadedState);
 
 const store = createStore(rootReducer, initialState);
-```
 
+// later inside React
+<UrlQuery
+  onChange={ query => history.push({...location, query, search:stringify(query)}) }
+/>
+</UrlQuery>
+```
