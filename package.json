@@ -1,6 +1,6 @@
 {
   "name": "react-query-param",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "like react-router@v4 but for query params",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
