@@ -2,6 +2,12 @@
 
 A `react-router@v4` inspired url query parameter library.
 
+## Demo
+
+[Simple Example With History](http://react-query-param-history.surge.sh)
+
+
+
 ## Example
 
 See: `examples/WithHistory` for a from-scratch integration with `redux` and `history`. 
