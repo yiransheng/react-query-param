@@ -57,7 +57,7 @@ The above code by itself does not actually modify page url. It only logs changes
 `QueryParam` can be nested:
 
 ```
-<QueryParam name="topKey" values={["cannot", "be", "overridden"]}>
+<QueryParam name="topKey" values={["will", "be", "overridden"]}>
   <div>
      <App />
      <SideBar />
@@ -70,7 +70,7 @@ This will fire `onChange` at root `UrlQuery` with the following:
 
 ```
 {
-  topKey : ["cannot", "be", "overridden"]
+  topKey : ["by", "children"]
 }
 ```
 
