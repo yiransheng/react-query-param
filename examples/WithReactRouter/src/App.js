@@ -12,6 +12,8 @@ import {
   routerMiddleware,
   push
 } from "react-router-redux";
+import Styletron from "styletron-client";
+import { StyletronProvider } from "styletron-react";
 import { isEmpty, memoize } from "lodash";
 import { parse, stringify } from "query-string";
 import compose from "recompose/compose";
@@ -21,7 +23,9 @@ import withHandlers from "recompose/withHandlers";
 
 import rootReducer, { getInitialState } from "./ducks";
 
+import Flex from "./Flex";
 import Messages from "./Messages";
+import Sidebar from "./Sidebar";
 import Filters from "./Filters";
 
 const history = createBrowserHistory();
@@ -35,14 +39,16 @@ const store = createStore(
 const App = () => {
   return (
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <ReduxUrlQuery>
-          <div>
-            <Filters />
-            <Messages />
-          </div>
-        </ReduxUrlQuery>
-      </ConnectedRouter>
+      <StyletronProvider styletron={new Styletron()}>
+        <ConnectedRouter history={history}>
+          <ReduxUrlQuery>
+            <Flex>
+              <Sidebar />
+              <Messages />
+            </Flex>
+          </ReduxUrlQuery>
+        </ConnectedRouter>
+      </StyletronProvider>
     </Provider>
   );
 };

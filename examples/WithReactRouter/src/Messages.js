@@ -1,18 +1,51 @@
 import React from "react";
 import { connect } from "react-redux";
+import { styled } from "styletron-react";
+
+import Filters from "./Filters";
 import { getUser, getFilteredMessages } from "./ducks";
+
+const H3 = styled("h3", props => {
+  return {
+    fontWeight: props.unread ? 700 : 400,
+    textTransform: props.unread ? "uppercase" : "none",
+    margin: 0,
+    padding: "0.25rem 0"
+  };
+});
+const List = styled("li", () => ({
+  listStyleType: "none",
+  border: "1px solid #ccc",
+  borderTopColor: "transparent",
+  padding: "0.5em 1em",
+  marginBottom: 2,
+  maxWidth: 960
+}));
+const Sender = styled("div", () => ({
+  borderTop: "1px solid #ccc",
+  paddingTop: "0.5rem",
+  fontSize: "0.85rem",
+  fontWeight: "lighter",
+  fontFamily: "sans-serif",
+  color: "#777"
+}));
+const MessagesContainer = styled("div", () => ({
+  width: "100%",
+  flexGrow: 2,
+  paddingLeft: "1em"
+}));
 
 const Message = connect((state, ownProps) => {
   const fromUser = getUser(state, { userId: ownProps.fromUser });
   return {
     fromUser
   };
-})(({ id, title, fromUser }) => {
+})(({ id, title, fromUser, unread }) => {
   return (
-    <li key={id}>
-      <h3>{title}</h3>
-      <div><span>From: </span><span>{fromUser.name}</span></div>
-    </li>
+    <List key={id}>
+      <H3 unread={unread}>{title}</H3>
+      <Sender><span>From: </span><span>{fromUser.name}</span></Sender>
+    </List>
   );
 });
 
@@ -20,12 +53,14 @@ const Messages = connect(state => {
   return { messages: getFilteredMessages(state) };
 })(({ messages }) => {
   return (
-    <ul>
-      {messages.map(msg => <Message {...msg} key={msg.id} />)}
-    </ul>
+    <MessagesContainer>
+      <Filters />
+      <ul>
+        {messages.map(msg => <Message {...msg} key={msg.id} />)}
+      </ul>
+    </MessagesContainer>
   );
 });
 
-Messages.Message = Message;
-
+export { Message };
 export default Messages;
