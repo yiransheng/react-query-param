@@ -81,9 +81,6 @@ export function memoize(func) {
   return (arg) => {
     if (!strictEqual(prevArg, arg)) {
       result = func(arg);
-      if (typeof result === "function") {
-        result = memoize(result);
-      }
     } 
     prevArg = arg;
     return result;
