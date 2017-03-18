@@ -80,6 +80,10 @@ export function filterUnread(unread) {
   const type = unread ? SET_FILTER : CLEAR_FILTER;
   return { type: type, payload: { unread } };
 }
+export function filterSearched(search) {
+  const type = search ? SET_FILTER : CLEAR_FILTER;
+  return { type: type, payload: { search } };
+}
 
 export function deriveQueryActions(location) {
   const query = parse(location.search);
@@ -199,7 +203,14 @@ export const getFilteredMessages = createSelector(
     };
     const bySearch = message => {
       if (filter.search !== null) {
-        return new RegExp(filter.search, "ig").test(message);
+        const words = filter.search.split(/\s+/g);
+        return words.some(word => {
+          if (!word) {
+            return false;
+          }
+          const regex = new RegExp(word, "ig");
+          return regex.test(message.title) || regex.test(message.body);
+        });
       }
       return true;
     };
