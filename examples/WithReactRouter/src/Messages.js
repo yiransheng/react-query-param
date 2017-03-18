@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { styled } from "styletron-react";
 
+import TimeAgo from "react-timeago";
 import Filters from "./Filters";
 import { getUser, getFilteredMessages } from "./ducks";
 
@@ -40,11 +41,16 @@ const Message = connect((state, ownProps) => {
   return {
     fromUser
   };
-})(({ id, title, fromUser, unread }) => {
+})(({ id, title, fromUser, unread, date }) => {
   return (
     <List key={id}>
       <H3 unread={unread}>{title}</H3>
-      <Sender><span>From: </span><span>{fromUser.name}</span></Sender>
+      <Sender>
+        <span>From: </span>
+        <span>{fromUser.name}</span>
+        {" | "}
+        <span><TimeAgo date={date} /></span>
+      </Sender>
     </List>
   );
 });
