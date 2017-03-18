@@ -15,6 +15,13 @@ const Cell = styled("span", ({ bold }) => ({
   padding: "0.25rem",
   fontWeight: bold ? 700: 400
 }));
+const FiltersContainer = styled("div", () => ({
+  marginTop: "1rem",
+  borderBottom: "1px solid #ccc",
+  borderTop: "1px solid #ccc",
+  padding: "0.5rem",
+  paddingTop: "1.3rem"
+}));
 
 const Filters = connect(
   ({ view }) => {
@@ -24,6 +31,7 @@ const Filters = connect(
 )(({ filterUnread, filterSearched, search, unread, sender, userId }) => {
   return (
     <QueryParam name="user" values={userId}>
+      <FiltersContainer>
       <Flex>
         <Cell bold>
           Show Unread Only:
@@ -48,6 +56,7 @@ const Filters = connect(
           />
         </Cell>
       </Flex>
+      </FiltersContainer>
       <QueryParam
         name="unread"
         values={unread === null ? [] : Number(unread)}

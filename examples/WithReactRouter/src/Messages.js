@@ -55,7 +55,7 @@ const Messages = connect(state => {
   return (
     <MessagesContainer>
       <Filters />
-      <ul>
+      <ul style={{ margin: 0, padding: 0 }}>
         {messages.map(msg => <Message {...msg} key={msg.id} />)}
       </ul>
     </MessagesContainer>
