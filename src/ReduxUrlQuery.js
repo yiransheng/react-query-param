@@ -14,7 +14,7 @@ const handleChange = memoize((store) => (query) => {
   const location = state.router.location
   const search = '?' + stringify(query); 
   if (search !== location.search) {
-    store.dispatch(replace({...location, search}));
+    store.dispatch(replace({...location, method:"REPLACE", search}));
   }
 });
 
