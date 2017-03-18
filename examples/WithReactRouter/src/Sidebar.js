@@ -7,8 +7,15 @@ import { Message } from "./Messages";
 
 const ListContainer = styled("ul", () => ({
   width: "500px",
-  borderTop: "1px solid #ccc",
   padding: 0
+}));
+
+const Heading = styled("h2", () => ({
+  margin: 0,
+  backgroundColor: "#f0f0f0",
+  padding: "1rem",
+  borderBottom: "1px solid #ccc",
+  borderTop: "1px solid #ccc",
 }));
 
 const Messages = connect(state => {
@@ -16,6 +23,7 @@ const Messages = connect(state => {
 })(({ messages }) => {
   return (
     <ListContainer>
+      <Heading>✉ All Messages</Heading>
       {messages.map(msg => <Message {...msg} key={msg.id} />)}
     </ListContainer>
   );
