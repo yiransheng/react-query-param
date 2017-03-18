@@ -2,6 +2,8 @@ import React from "react";
 import createBrowserHistory from "history/createBrowserHistory";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { UrlQuery, QueryParam } from "react-url-param";
+import ReduxUrlQuery from "react-url-param/lib/ReduxUrlQuery";
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 import { isEmpty, memoize } from "lodash";
 import { parse, stringify } from "query-string";
 import compose from "recompose/compose";

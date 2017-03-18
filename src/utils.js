@@ -73,3 +73,19 @@ export function renderChildren(children) {
   }
   return <div>{children}</div>;
 }
+
+const strictEqual = (a, b) => a === b;
+export function memoize(func) {
+  let prevArg = Symbol();
+  let result;
+  return (arg) => {
+    if (!strictEqual(prevArg, arg)) {
+      result = func(arg);
+      if (typeof result === "function") {
+        result = memoize(result);
+      }
+    } 
+    prevArg = arg;
+    return result;
+  };
+}
