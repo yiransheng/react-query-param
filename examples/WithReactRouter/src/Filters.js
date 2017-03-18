@@ -13,11 +13,11 @@ const Cell = styled("span", ({ bold }) => ({
   alignItems: "center",
   justifyContent: "center",
   padding: "0.25rem",
-  fontWeight: bold ? 700: 400
+  fontWeight: bold ? 700 : 400
 }));
 const FiltersContainer = styled("div", () => ({
   marginTop: "1rem",
-  borderBottom: "1px solid #ccc",
+  borderBottom: "2px solid #ccc",
   borderTop: "1px solid #ccc",
   padding: "0.5rem",
   paddingTop: "1.3rem"
@@ -30,8 +30,7 @@ const Filters = connect(
   { filterUnread, filterSearched }
 )(({ filterUnread, filterSearched, search, unread, sender, userId }) => {
   return (
-    <QueryParam name="user" values={userId}>
-      <FiltersContainer>
+    <FiltersContainer>
       <Flex>
         <Cell bold>
           Show Unread Only:
@@ -45,7 +44,7 @@ const Filters = connect(
           />
         </Cell>
         <Cell bold>
-          Search Messages: 
+          Search Messages:{" "}
         </Cell>
         <Cell>
           <input
@@ -56,13 +55,12 @@ const Filters = connect(
           />
         </Cell>
       </Flex>
-      </FiltersContainer>
       <QueryParam
         name="unread"
         values={unread === null ? [] : Number(unread)}
       />
       <QueryParam name="search" values={search === null ? [] : search} />
-    </QueryParam>
+    </FiltersContainer>
   );
 });
 

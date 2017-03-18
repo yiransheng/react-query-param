@@ -2,14 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { styled } from "styletron-react";
 
+import { Link } from "react-router-dom";
 import TimeAgo from "react-timeago";
 import Filters from "./Filters";
 import { getUser, getFilteredMessages } from "./ducks";
 
 const H3 = styled("h3", props => {
   return {
-    fontWeight: props.unread ? 700 : 400,
-    textTransform: props.unread ? "uppercase" : "none",
+    fontWeight: props.bold ? 700 : 400,
+    textTransform: props.bold ? "uppercase" : "none",
     margin: 0,
     padding: "0.25rem 0"
   };
@@ -41,10 +42,20 @@ const Message = connect((state, ownProps) => {
   return {
     fromUser
   };
-})(({ id, title, fromUser, unread, date }) => {
+})(({ id, title, fromUser, unread, date, detail }) => {
+  let heading;
+  if (detail) {
+    heading = <H3 bold={true}>{title}</H3>;
+  } else {
+    heading = (
+      <H3 bold={unread}>
+        <Link to={`/${id}/`}>{title}</Link>
+      </H3>
+    );
+  }
   return (
     <List key={id}>
-      <H3 unread={unread}>{title}</H3>
+      {heading}
       <Sender>
         <span>From: </span>
         <span>{fromUser.name}</span>

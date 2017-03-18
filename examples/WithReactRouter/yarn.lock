@@ -4671,6 +4671,10 @@ signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
+single-key@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/single-key/-/single-key-1.0.0.tgz#925f012a3a2be88a6f4ff3510a66e89d3f641a57"
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"

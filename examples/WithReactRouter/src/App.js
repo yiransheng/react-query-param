@@ -25,6 +25,7 @@ import rootReducer, { getInitialState } from "./ducks";
 
 import Flex from "./Flex";
 import Messages from "./Messages";
+import MessageDetail from "./MessageDetail";
 import Sidebar from "./Sidebar";
 import Filters from "./Filters";
 
@@ -44,7 +45,10 @@ const App = () => {
           <ReduxUrlQuery>
             <Flex>
               <Sidebar />
-              <Messages />
+              <Route path="/:id" render={({match}) => {
+                return <MessageDetail id={match.params.id} />
+              }}/>
+              <Route exact path="/" component={Messages} /> 
             </Flex>
           </ReduxUrlQuery>
         </ConnectedRouter>
