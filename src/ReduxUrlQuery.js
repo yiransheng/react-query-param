@@ -8,13 +8,14 @@ import {memoize} from "./utils";
 
 const handleChange = memoize((store) => (query) => {
   const state = store.getState();
+  console.log(state);
   if (!state || !state.router || !state.router.location) {
     return;
   }
   const location = state.router.location
   const search = '?' + stringify(query); 
   if (search !== location.search) {
-    store.dispatch(replace({...location, method:"REPLACE", search}));
+    store.dispatch(replace({...location, search}));
   }
 });
 

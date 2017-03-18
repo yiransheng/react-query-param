@@ -1,10 +1,11 @@
 import React from "react";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import createBrowserHistory from "history/createBrowserHistory";
+import createLogger from "redux-logger";
 import { Route, Link } from "react-router-dom";
 import { QueryParam } from "react-url-param";
-import ReduxUrlQuery from "react-url-param/lib/ReduxUrlQuery";
+import ReduxUrlQuery from "react-url-param/ReduxUrlQuery";
 import {
   ConnectedRouter,
   routerReducer,
@@ -20,18 +21,30 @@ import withHandlers from "recompose/withHandlers";
 
 import rootReducer, { getInitialState } from "./ducks";
 
+import Messages from "./Messages";
+import Filters from "./Filters";
+
 const history = createBrowserHistory();
 
-const store = createStore(rootReducer, getInitialState(history.location));
+const store = createStore(
+  rootReducer,
+  getInitialState(history.location),
+  applyMiddleware(createLogger(), routerMiddleware(history))
+);
 
 const App = () => {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <ReduxUrlQuery>
-          <div />
+          <div>
+            <Filters />
+            <Messages />
+          </div>
         </ReduxUrlQuery>
       </ConnectedRouter>
     </Provider>
   );
 };
+
+export default App;
