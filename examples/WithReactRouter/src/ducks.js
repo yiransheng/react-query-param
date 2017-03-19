@@ -1,6 +1,6 @@
 import { sortBy, isEmpty, isFinite, random, mapValues } from "lodash";
 import { createSelector } from "reselect";
-import liftReducer from "react-url-param/liftReducer";
+import { liftReducer } from "react-url-param/react-router-redux";
 import { routerReducer, LOCATION_CHANGE } from "react-router-redux";
 import { parse } from "query-string";
 import casual from "casual-browserify";
