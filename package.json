@@ -8,7 +8,7 @@
     "clean": "rimraf lib",
     "build": "babel src --out-dir lib",
     "test": "tape -r babel-polyfill -r babel-register './test/*.test.js'",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "npm test && npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
