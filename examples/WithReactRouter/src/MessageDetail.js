@@ -4,7 +4,7 @@ import { styled } from "styletron-react";
 
 import { Link } from "react-router-dom";
 import { Message } from "./Messages";
-import { getCurrentUser, getUser, getFilteredMessages } from "./ducks";
+import { getCurrentUser } from "./ducks";
 
 const MessageContainer = styled("div", () => ({
   width: "100%",
