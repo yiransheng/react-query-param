@@ -1,5 +1,6 @@
 import { sortBy, isEmpty, isFinite, random, mapValues } from "lodash";
 import { createSelector } from "reselect";
+import liftReducer from "react-url-param/liftReducer";
 import { routerReducer, LOCATION_CHANGE } from "react-router-redux";
 import { parse } from "query-string";
 import casual from "casual-browserify";
@@ -137,12 +138,7 @@ function filterReducer(filterSettings, { type, payload }) {
   }
 }
 
-function rootReducer(state, action) {
-  if (action.type === LOCATION_CHANGE) {
-    const newState = { ...state, router: routerReducer(state.router, action) };
-    const actions = deriveQueryActions(action.payload);
-    return actions.reduce(rootReducer, newState);
-  }
+const rootReducer = liftReducer(function (state, action) {
   if (action.type === SWITCH_USER) {
     const view = { ...state.view, whoami: action.payload || state.view.whoami };
     return {
@@ -161,7 +157,7 @@ function rootReducer(state, action) {
     };
   }
   return state;
-}
+}, deriveQueryActions);
 
 // selectors
 
