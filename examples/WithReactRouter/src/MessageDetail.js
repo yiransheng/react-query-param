@@ -14,7 +14,7 @@ const MessageContainer = styled("div", () => ({
   backgroundColor: "f6f6f6"
 }));
 
-const Body = styled("p", () => ({
+const MessageBody = styled("p", () => ({
   padding: "1rem",
   minHeight: "25rem",
   border: "1px solid #ccc",
@@ -38,7 +38,7 @@ const MessageDetail = connect((state, ownProps) => {
     const { body } = props;
     content = [
       <Message {...props} detail />,
-      <Body>{body}</Body>,
+      <MessageBody>{body}</MessageBody>,
       <Link to="/">{"< All Messages"}</Link>
     ];
   }
