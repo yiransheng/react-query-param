@@ -3,8 +3,8 @@ import { withRouter } from 'react-router'
 import { replace } from "react-router-redux";
 import { stringify } from "query-string";
 
-import UrlQuery from "./UrlQuery";
-import {memoize} from "./utils";
+import UrlQuery from "../UrlQuery";
+import {memoize} from "../utils";
 
 const handleChange = memoize((store) => (query) => {
   const state = store.getState();
@@ -19,7 +19,7 @@ const handleChange = memoize((store) => (query) => {
   }
 });
 
-export default class ReduxUrlQuery extends Component {
+export default class ConnectedUrlQuery extends Component {
 
   static contextTypes = {
     store: PropTypes.object
