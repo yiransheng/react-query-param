@@ -6,13 +6,15 @@ A `react-router@v4` inspired url query parameter library.
 
 [Simple Example With History](http://react-query-param-history.surge.sh)
 
+[Example with Router](http://able-vase.surge.sh)
+
 
 
 ## Example
 
 See: `examples/WithHistory` for a from-scratch integration with `redux` and `history`. 
 
-More examples with `react-router` coming soon.
+See: `examples/WithReactRouter` for integration with `react-router` and `react-router-redux`
 
 ## Overview
 
