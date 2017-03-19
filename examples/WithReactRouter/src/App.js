@@ -3,7 +3,6 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { Route } from "react-router";
 import createBrowserHistory from "history/createBrowserHistory";
-import { QueryParam } from "react-url-param";
 import { ConnectedUrlQuery } from "react-url-param/react-router-redux";
 import { ConnectedRouter, routerMiddleware } from "react-router-redux";
 import createLogger from "redux-logger";
@@ -16,7 +15,6 @@ import Flex from "./Flex";
 import Messages from "./Messages";
 import MessageDetail from "./MessageDetail";
 import Sidebar from "./Sidebar";
-import Filters from "./Filters";
 
 const history = createBrowserHistory();
 
