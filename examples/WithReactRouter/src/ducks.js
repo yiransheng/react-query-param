@@ -105,7 +105,7 @@ export function deriveQueryActions(location) {
   }
   if ("sender" in query) {
     const senders = Array.isArray(query.sender) ? query.sender : [query.sender];
-    filter.sender = senders.map(id => parseInt(id)).filter(isFinite);
+    filter.sender = senders.map(id => parseInt(id, 10)).filter(isFinite);
   } else {
     filter.sender = null;
   }
@@ -171,7 +171,7 @@ export const getOtherUsers = createSelector(
   [getCurrentUser, ({ entities }) => entities.person],
   (currentUser, people) => {
     return Object.keys(people)
-      .filter(id => parseInt(id) !== currentUser.id)
+      .filter(id => parseInt(id, 10) !== currentUser.id)
       .map(id => people[id]);
   }
 );

@@ -8,7 +8,6 @@ import {memoize} from "../utils";
 
 const handleChange = memoize((store) => (query) => {
   const state = store.getState();
-  console.log(state);
   if (!state || !state.router || !state.router.location) {
     return;
   }

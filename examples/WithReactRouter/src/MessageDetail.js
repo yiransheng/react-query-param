@@ -26,6 +26,7 @@ const MessageDetail = connect((state, ownProps) => {
   const currentUser = getCurrentUser(state);
   const message = state.entities.message[id];
   if (message) {
+    /* eslint eqeqeq: "off" */
     return message.toUser == currentUser.id ? message : { notFound: true };
   } else {
     return { notFound: true };
@@ -37,9 +38,9 @@ const MessageDetail = connect((state, ownProps) => {
   } else {
     const { body } = props;
     content = [
-      <Message {...props} detail />,
-      <MessageBody>{body}</MessageBody>,
-      <Link to="/">{"< All Messages"}</Link>
+      <Message key="title" {...props} detail />,
+      <MessageBody key="body">{body}</MessageBody>,
+      <Link key="link" to="/">{"< All Messages"}</Link>
     ];
   }
 
