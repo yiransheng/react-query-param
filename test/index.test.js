@@ -32,7 +32,7 @@ test("mount", t => {
 });
 
 test("update", t => {
-  t.plan(2);
+  t.plan(3);
 
   const queries = [];
   const callback = query => {
@@ -90,6 +90,7 @@ test("update", t => {
       return wrapper.instance().update();
     })
     .then(() => {
+      t.equal(queries.length, 2);
       t.deepEqual(queries[1], { a: "123", b: "4" });
     });
 });
