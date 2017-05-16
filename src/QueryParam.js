@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 import compose from "recompose/compose";
 import shallowEqual from "recompose/shallowEqual";
@@ -21,12 +22,12 @@ const makeNode = (parentKey, data) => {
 
 const QueryParam = compose(
   getContext({
-    "@@query/nodes": React.PropTypes.shape({
-      push: React.PropTypes.func.isRequired,
-      replace: React.PropTypes.func.isRequired,
-      remove: React.PropTypes.func.isRequired
+    "@@query/nodes": PropTypes.shape({
+      push: PropTypes.func.isRequired,
+      replace: PropTypes.func.isRequired,
+      remove: PropTypes.func.isRequired
     }),
-    "@@query/currentKey": React.PropTypes.symbol
+    "@@query/currentKey": PropTypes.symbol
   }),
   withProps(props => {
     if (props.name && typeof props.name === "string") {
@@ -44,7 +45,7 @@ const QueryParam = compose(
   class extends Component {
     static displayName = "QueryParam";
     static childContextTypes = {
-      "@@query/currentKey": React.PropTypes.symbol
+      "@@query/currentKey": PropTypes.symbol
     };
     constructor(props) {
       super(props);

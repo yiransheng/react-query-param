@@ -27,7 +27,8 @@
   },
   "homepage": "https://github.com/yiransheng/react-query-param#readme",
   "peerDependencies": {
-    "react": "^15.4.2",
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4",
     "recompose": "^0.22.0"
   },
   "devDependencies": {
@@ -43,10 +44,11 @@
     "enzyme": "^2.7.1",
     "jsdom": "^9.12.0",
     "query-string": "^4.3.2",
-    "react": "^15.4.2",
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4",
     "react-addons": "^0.9.1-deprecated",
     "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react-dom": "^15.5.4",
     "react-router": "^4.0.0",
     "react-router-redux": "5.0.0",
     "recompose": "^0.22.0",

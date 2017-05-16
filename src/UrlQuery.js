@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { flatMap, oncePerTick, renderChildren } from "./utils";
 
@@ -105,12 +106,12 @@ const nodesApi = (storage = getInitialNodes()) => callback => {
 
 export default class UrlQuery extends Component {
   static childContextTypes = {
-    "@@query/nodes": React.PropTypes.shape({
-      push: React.PropTypes.func.isRequired,
-      replace: React.PropTypes.func.isRequired,
-      remove: React.PropTypes.func.isRequired
+    "@@query/nodes": PropTypes.shape({
+      push: PropTypes.func.isRequired,
+      replace: PropTypes.func.isRequired,
+      remove: PropTypes.func.isRequired
     }),
-    "@@query/currentKey": React.PropTypes.symbol
+    "@@query/currentKey": PropTypes.symbol
   };
 
   constructor(props) {
